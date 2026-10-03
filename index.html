@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#091519">
+  <title>Varma — molecular research workspace by QueroCura</title>
+  <meta name="description" content="Source-linked disease research and calculated molecular structure workbench by QueroCura.">
+  <link rel="stylesheet" href="/styles.css">
+  <script defer src="/assets/3Dmol-min.js"></script>
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#overview" aria-label="Varma by QueroCura home">
+        <span class="brand-symbol"><i></i><i></i><i></i></span>
+        <span class="brand-words"><strong>VARMA</strong><small>by QueroCura</small></span>
+      </a>
+      <div class="sidebar-label">RESEARCH WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">▧</span> Overview</button>
+        <button class="nav-item" data-view="molecule"><span class="nav-icon">⬡</span> Molecule studio</button>
+        <button class="nav-item" data-view="disease"><span class="nav-icon">◎</span> Disease research</button>
+        <button class="nav-item" data-view="discovery"><span class="nav-icon">◈</span> Discovery status</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="environment"><span class="status-dot"></span><span>Local research environment</span></div>
+        <p>Evidence before inference.<br>Every claim keeps its basis.</p>
+        <div class="sidebar-rule"></div>
+        <span class="copyright">© 2026 QueroCura</span>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="crumb"><span>QUEROCURA</span><span class="slash">/</span><span id="breadcrumb">OVERVIEW</span></div>
+        <div class="top-actions"><span id="connection-status" class="connection">Connecting…</span><span class="avatar">V</span></div>
+      </header>
+
+      <section class="view active" id="view-overview" aria-labelledby="overview-title">
+        <div class="eyebrow"><span class="eyebrow-line"></span> RESEARCH INTELLIGENCE PLATFORM</div>
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="hero-kicker">VARMA / VERSION 0.1</div>
+            <h1 id="overview-title">Molecular research,<br><em>with every assumption in view.</em></h1>
+            <p>Move from a disease question to source-linked target evidence, or inspect a molecular structure in 2D and 3D. Varma keeps calculated chemistry, source observations and model predictions distinct.</p>
+            <div class="hero-actions"><button class="button primary" data-view="molecule">Open molecule studio <span>↗</span></button><button class="button ghost" data-view="disease">Explore disease evidence <span>→</span></button></div>
+          </div>
+          <div class="hero-visual" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="orb orb-three"></div><div class="hero-axis"></div><div class="hero-tag">STRUCTURE · EVIDENCE · PROVENANCE</div></div>
+        </div>
+        <div class="section-intro"><div><span class="micro-label">THE WORKSPACE</span><h2>Choose your research path</h2></div><p>Focused tools for questions Varma can answer today.</p></div>
+        <div class="path-grid">
+          <button class="path-card" data-view="molecule"><span class="path-num">01 / STRUCTURE</span><span class="path-glyph">⬡</span><strong>Model a molecule</strong><span>Validate SMILES, inspect descriptors and calculate a 3D conformer.</span><b>ENTER STUDIO <span>↗</span></b></button>
+          <button class="path-card" data-view="disease"><span class="path-num">02 / DISEASE</span><span class="path-glyph">◎</span><strong>Research a disease</strong><span>Search ontology terms and inspect source-ranked target evidence.</span><b>EXPLORE EVIDENCE <span>↗</span></b></button>
+          <button class="path-card" data-view="discovery"><span class="path-num">03 / DISCOVERY</span><span class="path-glyph">◈</span><strong>Assess readiness</strong><span>See the exact evidence gates before an activity model can be used.</span><b>VIEW STATUS <span>↗</span></b></button>
+        </div>
+        <div class="principle-bar"><span class="principle-mark">✧</span><div><strong>A research instrument, not a claim generator.</strong><p>Calculated structure is not measured efficacy. Source association is not target validation. No clinical outcome is inferred here.</p></div><span class="principle-index">QC / 001</span></div>
+      </section>
+
+      <section class="view" id="view-molecule" aria-labelledby="molecule-title">
+        <div class="page-head"><div><div class="eyebrow"><span class="eyebrow-line"></span> MOLECULE STUDIO</div><h1 id="molecule-title">Understand the structure.</h1><p>Calculated properties and conformers from a supplied SMILES. No activity model is implied.</p></div><span class="head-pill">RDKit CALCULATION</span></div>
+        <div class="studio-grid">
+          <div class="panel input-panel">
+            <div class="panel-heading"><span class="panel-index">01 / INPUT</span><span class="panel-symbol">⌘</span></div>
+            <h2>Define a molecule</h2><p class="panel-description">Enter a single valid SMILES string. Stereochemistry is preserved exactly as supplied.</p>
+            <form id="molecule-form"><label for="smiles-input">MOLECULAR STRUCTURE · SMILES</label><textarea id="smiles-input" rows="3" maxlength="1000" spellcheck="false" placeholder="e.g. CC(=O)Oc1ccccc1C(=O)O" required></textarea><div class="input-foot"><span>Up to 1,000 characters</span><span id="char-count">0 / 1000</span></div><label for="molecule-name">REFERENCE NAME <span class="optional">OPTIONAL</span></label><input id="molecule-name" maxlength="200" placeholder="e.g. Aspirin"><label class="check-row"><input id="include-3d" type="checkbox" checked><span>Calculate a 3D conformer</span><small>ETKDGv3 · one conformer</small></label><button class="button primary full" type="submit" id="analyse-button">Analyse structure <span>↗</span></button></form>
+            <div class="examples"><span>TRY A REFERENCE STRUCTURE</span><div><button data-example="aspirin">Aspirin</button><button data-example="caffeine">Caffeine</button><button data-example="ethanol">Ethanol</button></div></div>
+          </div>
+          <div class="panel structure-panel">
+            <div class="panel-heading"><span class="panel-index">02 / MOLECULAR VIEW</span><span id="structure-state" class="small-state">AWAITING INPUT</span></div>
+            <div class="view-switch"><button class="active" data-structure-view="3d">3D conformer</button><button data-structure-view="2d">2D depiction</button></div>
+            <div id="molecule-empty" class="molecule-empty"><span class="empty-hex">⬡</span><strong>Your structure appears here</strong><p>Enter a SMILES or choose a reference to begin.</p></div>
+            <div id="molecule-3d" class="molecule-canvas" hidden></div><div id="molecule-2d" class="molecule-canvas two-d" hidden><img id="molecule-svg" alt="Calculated two-dimensional molecular depiction"></div>
+            <div class="viewer-foot"><span><span class="mini-dot"></span> CALCULATED GEOMETRY</span><span>DRAG TO ROTATE · SCROLL TO ZOOM</span></div>
+          </div>
+        </div>
+        <div id="molecule-message" class="message" role="status" aria-live="polite" hidden></div>
+        <div id="molecule-results" class="result-section" hidden><div class="section-intro compact"><div><span class="micro-label">ANALYSIS RESULT</span><h2 id="result-name">Molecule</h2></div><button id="export-molecule" class="button outline">Export research JSON ↓</button></div><div class="result-grid"><div class="panel identity-panel"><span class="panel-index">IDENTITY</span><h3 id="result-formula">—</h3><p class="mono" id="result-smiles">—</p><div class="identity-rule"></div><div class="identity-detail"><span>RESEARCH BASIS</span><strong>Calculated from structure</strong></div><div class="identity-detail"><span>UNRESOLVED STEREO</span><strong id="result-stereo">—</strong></div><div class="identity-detail"><span>3D STATUS</span><strong id="result-geometry">—</strong></div></div><div class="panel property-panel"><span class="panel-index">CALCULATED PROPERTIES</span><div id="properties-grid" class="property-grid"></div></div></div><div class="caveat">No experimental validation by Varma. Activity, toxicity and clinical predictions remain unavailable without admitted models and evidence.</div></div>
+      </section>
+
+      <section class="view" id="view-disease" aria-labelledby="disease-title">
+        <div class="page-head"><div><div class="eyebrow"><span class="eyebrow-line"></span> DISEASE RESEARCH</div><h1 id="disease-title">Follow the evidence.</h1><p>Search disease terms, choose an explicit ontology record and inspect source-ranked target associations.</p></div><span class="head-pill">SOURCE-LINKED</span></div>
+        <div class="disease-layout"><div class="panel disease-search"><div class="panel-heading"><span class="panel-index">01 / SEARCH</span><span class="panel-symbol">◎</span></div><h2>Start with a disease</h2><p class="panel-description">A search result is a choice of disease record, not a diagnosis or therapeutic recommendation.</p><form id="disease-search-form"><label for="disease-query">DISEASE TERM</label><div class="search-input-wrap"><input id="disease-query" maxlength="200" value="hypercholesterolemia" placeholder="Search a disease or phenotype" required><button class="button primary" type="submit" id="disease-search-button">Search ↗</button></div></form><div id="disease-message" class="message" role="status" aria-live="polite" hidden></div><div id="disease-candidates" class="candidate-list"></div></div><div class="panel disease-context"><span class="panel-index">RESEARCH PRINCIPLE</span><div class="context-art">◎<span>01</span></div><h3>Associations are a starting point.</h3><p>Target ranking reflects a provider’s aggregation of evidence. It does not determine direction of intervention, tractability, compound design or clinical benefit.</p><div class="context-rule"></div><span class="context-foot">OPEN TARGETS · SOURCE RECORDS PRESERVED</span></div></div>
+        <div id="disease-report" class="result-section" hidden><div class="section-intro compact"><div><span class="micro-label">SOURCE-LINKED REPORT</span><h2 id="disease-report-title">Disease report</h2></div><a id="dossier-link" class="button outline" target="_blank" rel="noopener noreferrer">Open full dossier ↗</a></div><p id="disease-report-note" class="report-note"></p><div id="target-list" class="target-list"></div></div>
+      </section>
+
+      <section class="view" id="view-discovery" aria-labelledby="discovery-title">
+        <div class="page-head"><div><div class="eyebrow"><span class="eyebrow-line"></span> DISCOVERY READINESS</div><h1 id="discovery-title">Show the gate, not the guess.</h1><p>Varma makes scientific scope and evidence gaps visible before any activity-guided design claim.</p></div><span class="head-pill muted">MODEL NOT ADMITTED</span></div>
+        <div class="readiness-hero"><div><span class="micro-label">INITIAL TARGET · HUMAN HMGCR / P04035</span><h2>Research pipeline<br><em>awaiting eligible data.</em></h2><p>The current live audit did not establish one exact biochemical IC50 assay with verified BindingDB staff-curated origin and enough unique structures. No HMGCR activity model or molecule proposal is released.</p></div><div class="readiness-score"><strong>00</strong><span>ADMITTED ACTIVITY<br>MODELS</span></div></div>
+        <div class="gate-grid"><div class="gate-card"><span>01 / SOURCE</span><strong>Verified row origin</strong><p>Independent source provenance and commercial reuse review are required.</p><b>OPEN</b></div><div class="gate-card"><span>02 / ASSAY</span><strong>Exact assay context</strong><p>One comparable biochemical IC50 context must be isolated without mixing conditions.</p><b>OPEN</b></div><div class="gate-card"><span>03 / DATA</span><strong>Enough chemical diversity</strong><p>At least 300 unique compounds and 60 scaffold groups under the frozen policy.</p><b>OPEN</b></div><div class="gate-card"><span>04 / EVALUATION</span><strong>Held-out release gate</strong><p>Independent calibration and scaffold-shift testing must beat a selected baseline.</p><b>PENDING</b></div></div>
+        <div class="principle-bar discovery-note"><span class="principle-mark">✧</span><div><strong>Discovery is earned by evidence.</strong><p>Reaction-graph checks account for atoms and bonds; they do not predict a verified mechanism or laboratory preparation. Clinical-trial outcomes are not simulated here.</p></div><span class="principle-index">QC / 004</span></div>
+      </section>
+      <footer class="main-footer"><span>VARMA BY QUEROCURA</span><span>RESEARCH USE · SOURCE AND CALCULATION BASIS SHOWN</span></footer>
+    </main>
+  </div>
+</body>
+</html>
